@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+    schemeapp:
+        image: schemeapp_img
+        container_name: schemeapp_inst
+        build:
+            context: ./schemeapp
+        ports:
+            - '8088:8088'
+        environment:
+            - NODE_ENV=docker
+        volumes:
+            - appdata:/usr/src/app
+        networks:
+            - schemenetwork
+    modelsapi:
+        image: modelsapi_img
+        container_name: modelsapi_inst
+        build:
+            context: ./modelsapi
+        ports:
+            - '8087:8087'
+        environment:
+            - NODE_ENV=docker
+        volumes:
+            - modelsdata:/user/src/app
+        links:
+            - 'schemeapi:prestoapi'
+            - 'schememodels:mysql'
+        networks:
+            - schemenetwork
+    schemeapi:
+        image: schemeapi_img
+        container_name: schemeapi_inst
+        build:
+            context: ./schemeapi
+        ports:
+            - '8086:8086'
+        environment:
+            - NODE_ENV=docker
+        volumes:
+            - apidata:/usr/src/app
+        networks:
+            - schemenetwork
+    schememodels:
+        image: mariadb
+        container_name: schememodels_inst
+        environment:
+            - MYSQL_DATABASE=schememodels
+            - MYSQL_ROOT_PASSWORD=rootscheme
+        volumes:
+            - ./schememodels:/docker-entrypoint-initdb.d:ro
+            - dbdata:/var/lib/mysql
+        ports:
+            - '3306:3306'
+        networks:
+            - 'schemenetwork'
+networks:
+    schemenetwork:
+        driver: bridge
+volumes:
+    appdata:
+    apidata:
+    modelsdata:
+    dbdata:
