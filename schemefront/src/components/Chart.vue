@@ -33,7 +33,7 @@
     </div> -->
     <div class="container">
       <b-jumbotron>
-        <p><strong>Current work in Progress...come back shortly</strong></p>
+        <p><strong>Current Work in Progress...Updates Will Come Soon!</strong></p>
       </b-jumbotron>
     </div>
   </div>
