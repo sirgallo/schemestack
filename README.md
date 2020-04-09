@@ -42,3 +42,15 @@ Error in your query? No worries! Scheme will also return an error message direct
 If you run into bugs, let me know! I am currently working to test as many cases as possible, running into issues using your software is a headache nobody enjoys.
 
 Scheme on I guess?
+
+Some guided images...
+
+![alt text](img_directions/powershell.png)
+
+![alt text](img_directions/docker.png)
+
+![alt text](img_directions/create.png)
+
+![alt text](img_directions/generate.png)
+
+![alt text](img_directions/results.png)
