@@ -1,10 +1,10 @@
 version: "3.7"
 services:
-    schemeapp:
-        image: schemeapp_img
-        container_name: schemeapp_inst
+    schemefront:
+        image: schemefront_img
+        container_name: schemefront_inst
         build:
-            context: ./schemeapp
+            context: ./schemefront
         ports:
             - '8088:8088'
         environment:
