@@ -104,7 +104,7 @@ router.post('/', (req, res, next) => {
                 res.json({'message': message, 'table': '-', 'query': query})
             }
             else {
-                let table = '<div class="card"><table class="table"><thead class="thead-dark"><tr>'
+                let table = '<div class="card" style="overflow-x:auto;"><table class="table"><thead class="thead-dark"><tr>'
                 for(let i = 0; i < data.columns.length; i++)
                     table += '<th scope="col">' + data.columns[i].name + '</th>'
                 table += '</tr></thead><tbody>'
