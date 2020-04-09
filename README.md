@@ -22,7 +22,7 @@ Steps to Run:
   - clone this git repository onto your machine
   - open powershell/terminal and go to the directory where you downloaded the repository
   - in the root folder of the project, type: docker-compose up --build schemefront modelsapi schemeapi schememodels
-  - wait while docker compiles the project, downloads dependencies, and initializes containers
+  - wait while docker compiles the services, downloads dependencies, and initializes containers
   - once ready, in your browser go to either http://yourhost.com:8088 or, on the machine running docker, http://localhost:8088
   - thats it!
   
