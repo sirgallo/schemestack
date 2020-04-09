@@ -58,4 +58,4 @@ If you run into bugs, **let me know!** I am currently working to test as many ca
 ![alt text](img_directions/generate.png)
 
 ### Get Real Results Based on Your Data
-![alt text](img_directions/results.png)
+![alt text](img_directions/result.png)
