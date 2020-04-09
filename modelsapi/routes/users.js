@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Maria = require('../public/javascripts/mariadb')
+const Maria = require('../public/mariadb')
 const user = require('../models/userinst')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')

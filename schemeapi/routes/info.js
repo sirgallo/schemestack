@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const prestocli = require('../public/javascripts/prestoclient')
+const prestocli = require('../public/prestoclient')
 
 router.post('/', (req, res, next) => {
     console.log('Hi you made it to the info route!')

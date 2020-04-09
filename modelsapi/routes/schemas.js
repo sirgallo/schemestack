@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Maria = require('../public/javascripts/mariadb')
+const Maria = require('../public/mariadb')
 
 router.post('/schema', (req, res, next) => {
 

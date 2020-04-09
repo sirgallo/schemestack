@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const chart = require('../models/chartinst')
-const Maria = require('../public/javascripts/mariadb')
-const fetchdata = require('../public/javascripts/fetchdata')
+const Maria = require('../public/mariadb')
+const fetchdata = require('../public/fetchdata')
 
 router.get('/', (req, res, next) => {
     console.log('Getting all charts! Wait...')

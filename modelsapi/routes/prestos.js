@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const Maria = require('../public/javascripts/mariadb')
+const Maria = require('../public/mariadb')
 const presto = require('../models/prestoinst')
-const fetchschema = require('../public/javascripts/fetchschema')
-const mapschema = require('../public/javascripts/mapschema')
+const fetchschema = require('../public/fetchschema')
+const mapschema = require('../public/mapschema')
 
 router.get('/', (req, res, next) => {
     console.log('Preparing to fetch prestos...')
