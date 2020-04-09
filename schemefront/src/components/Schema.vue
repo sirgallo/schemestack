@@ -365,7 +365,9 @@
             </b-tabs>
           </b-card>
         </b-jumbotron>
-        <h4>Results for "{{query}}"</h4>
+        <b-card>
+          <h4>Results for "{{query}}"</h4>
+        </b-card>
         <hr>
         <div v-html="restab"></div>
       </div>
