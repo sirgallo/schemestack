@@ -331,10 +331,6 @@
       </b-jumbotron>
     </div>
     <div v-if="block === 'results'" class="container">
-      <h4>Results for Current Query</h4>
-      <hr>
-      <br>
-      <!--<p>{{queryfailure}}</p>-->
       <div v-if="restab === ''">
         <b-jumbotron>
           <b-alert show variant="info">Waiting for Results...Please Hold...</b-alert>
@@ -369,14 +365,19 @@
             </b-tabs>
           </b-card>
         </b-jumbotron>
+        <h4>Results for "{{query}}"</h4>
+        <hr>
         <div v-html="restab"></div>
       </div>
       <div v-else>
           <b-jumbotron>
-            <b-alert show variant="danger">Uh-oh...Presto Threw an Error: "
-              <strong>{{queryfailure}}</strong>"
+            <b-alert show
+                    variant="danger">Uh-oh...Presto Threw an Error:
+                    <strong>"{{queryfailure}}"</strong>
+              <br>This was your query: <strong>"{{query}}"</strong>
+              <br><strong>...Go Back and Build a New Query</strong>
             </b-alert>
-            <b-alert show variant="danger">Go Back and Build a New Query</b-alert>
+            <!--<b-alert show variant="danger">Go Back and Build a New Query</b-alert>-->
             <br>
             <b-button @click="onBack" variant="warning" class="mr-2">Back</b-button>
           </b-jumbotron>
