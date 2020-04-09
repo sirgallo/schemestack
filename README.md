@@ -1,5 +1,5 @@
 # schemestack
-## A Query Builder utilizing Presto SQL Engine
+## A Query Builder Utilizing Presto SQL Engine
 
 Hi! Welcome to Scheme!
 
