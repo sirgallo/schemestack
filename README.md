@@ -29,7 +29,7 @@ I currently have the backend logic in progess to handle user authentication and 
 available soon, but if you would like to just test out the query builder go ahead!
 
 When accessing the application, you will be directed to the schema instances you currently have, in a list. You will not have any at first, and will be prompted as such! Hit create and fill out the schema instance creation form, using your presto credentials. These include:
-  - host where the cluster run
+  - host where the cluster runs
   - port to access the cluser
   - the data catalog where your schema lives
   - the schema you would like to use
