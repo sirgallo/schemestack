@@ -1,5 +1,5 @@
 # schemestack
-A Query Builder utilizing Presto SQL Engine
+## A Query Builder utilizing Presto SQL Engine
 
 Hi! Welcome to Scheme!
 
@@ -9,7 +9,7 @@ If you, or, more likely, your company, use a Presto SQL Cluster as your data pro
 
 How do I run this project? What dependencies do I need?
 
-Fortunately, all you need is docker desktop or a docker-compose compatible service.
+*Fortunately, all you need is docker desktop or a docker-compose compatible service.*
 
 Wow! This application will run the same on any device that is capable of running docker, hassle free (well..maybe not the same based on the hardware...but still)! I personally hate long and tedious software setup processes, so I tried to make this as hassle free as possible!
 
@@ -39,18 +39,23 @@ Hit query, wait, and get results! Defaults to 3500 returned, but you can go high
 
 Error in your query? No worries! Scheme will also return an error message directly from your Presto cluster if you made a mistake (or if Presto made a mistake...it might have).
 
-If you run into bugs, let me know! I am currently working to test as many cases as possible, running into issues using your software is a headache nobody enjoys.
+If you run into bugs, **let me know!** I am currently working to test as many cases as possible, running into issues using your software is a headache nobody enjoys.
 
-Scheme on I guess?
+**Scheme on I guess?**
 
-Some guided images...
+## Some Guided Images...
 
+### Application Deployment
 ![alt text](img_directions/powershell.png)
 
+### Stack Running in Docker...
 ![alt text](img_directions/docker.png)
 
+### Connect to Presto!
 ![alt text](img_directions/create.png)
 
+### Generate a Query!
 ![alt text](img_directions/generate.png)
 
+### Get Real Results Based on Your Data
 ![alt text](img_directions/results.png)
