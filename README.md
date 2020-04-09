@@ -12,7 +12,7 @@ How do I run this project? What dependencies do I need?
 
 Fortunately, all you need is docker desktop or a docker-compose compatible service.
 
-Wow! This program will run the same on any device that is capable of running docker, hassle free! We all hate long and tedious software
+Wow! This program will run the same on any device that is capable of running docker, hassle free (well..maybe not the same based on the hardware...but still)! We all hate long and tedious software
 setup processes, so I tried to make this as hassle free as possible!
 
 Steps to Run:
