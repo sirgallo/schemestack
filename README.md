@@ -3,7 +3,7 @@ A Query Builder utilizing Presto SQL Engine
 
 Hi! Welcome to Scheme!
 
-This project intends to be a fast, no hassle, easy to set up and pain free query builder, utilizing a Presto Cluster to run SQL queries.
+This project intends to be a fast, no hassle, easy to set up and pain free query builder, utilizing Presto SQL Engine to run SQL queries.
 
 Do you know SQL? Fear Not! If you, or, more likely, your company, use a Presto SQL Cluster as your data processing engine, you can connect Scheme painlessly and generate SQL queries effortlessly with the guided query builder. Generate complex queries with multiple
 where statements, join statments, orders, and limit statements.
