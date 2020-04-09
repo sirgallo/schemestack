@@ -8,8 +8,11 @@ router.post('/', (req, res, next) => {
     prestocli.PrestoClient(req.body.presto, req.body.query)
         .then(schema => {
             entities = schema.data
-            //console.log(entities)
-            res.send({'data': entities})
+            res.send({'status': 'success','data': entities})
+        })
+        .catch(err => {
+            res.send({'status': err})
+            console.log(err)
         })
 })
 

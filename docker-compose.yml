@@ -9,6 +9,7 @@ services:
             - '8088:8088'
         environment:
             - NODE_ENV=docker
+            - NODE_OPTIONS="--max-old-space-size=4096"
         volumes:
             - appdata:/usr/src/app
         networks:
@@ -22,6 +23,7 @@ services:
             - '8087:8087'
         environment:
             - NODE_ENV=docker
+            - NODE_OPTIONS="--max-old-space-size=4096"
         volumes:
             - modelsdata:/user/src/app
         links:
@@ -38,6 +40,7 @@ services:
             - '8086:8086'
         environment:
             - NODE_ENV=docker
+            - NODE_OPTIONS="--max-old-space-size=4096"
         volumes:
             - apidata:/usr/src/app
         networks:
@@ -49,12 +52,13 @@ services:
             - MYSQL_DATABASE=schememodels
             - MYSQL_ROOT_PASSWORD=rootscheme
         volumes:
+            - ./schememodels:/etc/mysql/conf.d:ro
             - ./schememodels:/docker-entrypoint-initdb.d:ro
             - dbdata:/var/lib/mysql
         ports:
-            - '3306:3306'
+            - '8085:8085'
         networks:
-            - 'schemenetwork'
+            - schemenetwork
 networks:
     schemenetwork:
         driver: bridge

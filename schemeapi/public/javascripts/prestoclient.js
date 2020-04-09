@@ -22,7 +22,7 @@ const PrestoClient = async (prestoinst, query) => {
     }
 
     //  define the url, the host with the port, and http method/headers/query body
-    let url = prestoinst.url
+    let url = prestoinst.host
     let host = url + ':' + prestoinst.port
     let request = {
         method: 'POST',
@@ -43,7 +43,7 @@ const PrestoClient = async (prestoinst, query) => {
     console.log('')
     console.log('Making server call...')
     console.log('')
-    
+
     try {
         //  make initial call to server, with POST method and the query to be evaluated
         let response = await Response(host + endpoint, request, data)
@@ -51,12 +51,22 @@ const PrestoClient = async (prestoinst, query) => {
         console.log('...Query Executed! Returning response now.')
         console.log('')
         console.log('""""""""""""""""""""""""""""""""')
-        let jsonres = {
-            columns: response.columns[0],
-            data: response.data[0]
+
+        console.log(response)
+        if(response.hasOwnProperty('message')) {
+            reserr = {
+                message: response.message
+            }
+            return reserr
         }
-        return jsonres
-        
+        else {
+            let jsonres = {
+                columns: response.columns[0],
+                data: response.data[0]
+            }
+            return jsonres
+        }
+
     } catch (err) {
         return err
     }
@@ -70,7 +80,7 @@ const PrestoClient = async (prestoinst, query) => {
 */
 const Response = async (url, request, data) => {
     let res = await Request(url, request)
-    
+
     //  check for errors
     if(res.hasOwnProperty('error')) {
         console.log(res.error)
@@ -106,7 +116,7 @@ const Request = async (url, request) => {
     try {
         const response = await fetch(url, request)
         return await response.json()
-    } catch (err) {           
+    } catch (err) {
         return err
     }
 }

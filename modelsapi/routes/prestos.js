@@ -22,12 +22,37 @@ router.get('/', (req, res, next) => {
                 })
         })
         .catch(err => {
-            throw err
+            console.log(err)
+            res.send({'status': 'failure', 'message': 'Hmm looks like we ran into an issue'})
         })
 })
 
-router.get('/:prestoId', (req, res, next) => {
-    console.log('Hi! Still working on this...')
+router.post('/delete', (req, res, next) => {
+    console.log('Preparing to delete Presto Entry')
+    let deleteschema = "delete from `schemas` where `table_catalog` = '" +
+        req.body.catalog + "' and `table_schema` = '" +
+        req.body.schema + "'"
+    let deletepresto = "delete from `prestocreds` where `id` = " + req.body.prestoid
+    let deletecharts = "delete from `charts` where `presto_id` = " + req.body.prestoid
+    const maria = new Maria.MariaDB()
+    maria.delete(deletecharts)
+        .then(() => {
+            maria.delete(deletepresto)
+                .then(() => {
+                    maria.delete(deleteschema)
+                        .then(() => {
+                            maria.close()
+                                .then(() => {
+                                    console.log('successfully deleted Instance and associated Schema')
+                                    res.send({'status': 'success'})
+                                })
+                        })
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.send({'status': 'failure', 'message': 'Something went wrong on our end'})
+        })
 })
 
 router.post('/create', (req, res, next) => {
@@ -36,6 +61,7 @@ router.post('/create', (req, res, next) => {
 
     //  object for presto credentials
     let Presto = presto.Presto
+    Presto.alias = req.body.alias
     Presto.host = req.body.hostname
     if (req.body.port != Presto.port)
         Presto.port = req.body.port
@@ -44,7 +70,8 @@ router.post('/create', (req, res, next) => {
     Presto.user = req.body.user
 
     //  we need to insert our instance into the database
-    let inspresto = "insert into `prestocreds` (`host`, `port`, `catalog`, `schema`, `user` ) values ('" +
+    let inspresto = 'insert into `prestocreds` (`alias`, `host`, `port`, `catalog`, `schema`, `user` ) values ("' +
+        Presto.alias + '", ' + "'" +
         Presto.host + "', " +
         Presto.port + ", '" +
         Presto.catalog + "', '" +
@@ -62,7 +89,7 @@ router.post('/create', (req, res, next) => {
                     //  this will return all of the information needed on the tables and columns
                     let schemaquery = "select * from columns where table_schema = '" + Presto.schema + "'"
                     //  use fetchschema to get schema from prestoclient api
-                    fetchschema.fetchSchema({url: Presto.host,
+                    fetchschema.fetchSchema({host: Presto.host,
                         port: Presto.port,
                         catalog: Presto.catalog,
                         schema: 'information_schema',
@@ -73,10 +100,7 @@ router.post('/create', (req, res, next) => {
                                 mapschema.MapSchema(entities)
                                     .then(() => {
                                         console.log('we made it')
-                                        res.send({'status': 'ok'})
-                                    })
-                                    .catch(err => {
-                                        console.log(err)
+                                        res.send({'status': 'success'})
                                     })
                             })
                 })

@@ -1,8 +1,6 @@
 const fetch = require('node-fetch')
 
-
-const fetchSchema = async (prestoinst, query) => {
-    //  configuration for request to presto api
+const fetchData = async(prestoinst, query) => {
     let params = {
         'presto': prestoinst,
         'query': query
@@ -17,11 +15,11 @@ const fetchSchema = async (prestoinst, query) => {
         body: JSON.stringify(params)
     }
 
-    console.log('Attempting to get Schema...hold tight')
+    console.log('Preparing to find your data...')
     console.log(request)
     try {
         let response = await Request(request)
-        console.log('Returned a Schema...phew')
+        console.log('Returned your data!')
         return response
     }
     catch (err) {
@@ -32,7 +30,7 @@ const fetchSchema = async (prestoinst, query) => {
 const Request = async (request) => {
     try {
         //  call the presto api using fetch with the request
-        const response = await fetch('http://prestoapi:8086/info', request)
+        const response = await fetch('http://prestoapi:8086/query', request)
         return await response.json()
     }
     catch (err) {
@@ -40,4 +38,4 @@ const Request = async (request) => {
     }
 }
 
-module.exports.fetchSchema = fetchSchema
+module.exports.fetchData = fetchData
