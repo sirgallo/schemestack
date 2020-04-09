@@ -22,7 +22,6 @@ router.post('/', (req, res, next) => {
             }
             else {
                 let table = tablebuilder(data)
-
                 res.json({'message': 'success', 'table': table, 'query': query})
             }
         })
