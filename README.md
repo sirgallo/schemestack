@@ -5,15 +5,13 @@ Hi! Welcome to Scheme!
 
 This project intends to be a fast, no hassle, easy to set up and pain free query builder, utilizing a Presto Cluster to run SQL queries.
 
-Do you know SQL? Fear Not! If you, or, more likely, your company, use a Presto SQL Cluster as your data processing engine, you can
-connect Scheme painlessly and generate SQL queries effortlessly with the guided query builder. Generate complex queries with multiple
+Do you know SQL? Fear Not! If you, or, more likely, your company, use a Presto SQL Cluster as your data processing engine, you can connect Scheme painlessly and generate SQL queries effortlessly with the guided query builder. Generate complex queries with multiple
 where statements, join statments, orders, and limit statements.
 How do I run this project? What dependencies do I need?
 
 Fortunately, all you need is docker desktop or a docker-compose compatible service.
 
-Wow! This program will run the same on any device that is capable of running docker, hassle free (well..maybe not the same based on the hardware...but still)! We all hate long and tedious software
-setup processes, so I tried to make this as hassle free as possible!
+Wow! This program will run the same on any device that is capable of running docker, hassle free (well..maybe not the same based on the hardware...but still)! We all hate long and tedious software setup processes, so I tried to make this as hassle free as possible!
 
 Steps to Run:
   - clone this git repository onto your machine
@@ -23,8 +21,7 @@ Steps to Run:
   - once ready, in your browser go to either http://yourhost.com:8088 or, on the machine running docker, http://localhost:8088
   - thats it!
 
-This application is currently rolling out new features as it goes, it is currently in its infancy! As well as even more complex queries,
-I currently have the backend logic in progess to handle user authentication and chart generation. Both of these features will be
+This application is currently rolling out new features as it goes, it is currently in its infancy! As well as even more complex queries, I currently have the backend logic in progess to handle user authentication and chart generation. Both of these features will be
 available soon, but if you would like to just test out the query builder go ahead!
 
 When accessing the application, you will be directed to the schema instances you currently have, in a list. You will not have any at first, and will be prompted as such! Hit create and fill out the schema instance creation form, using your presto credentials. These include:
