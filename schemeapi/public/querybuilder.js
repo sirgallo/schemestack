@@ -4,6 +4,7 @@ const queryBuilder = (req) => {
     let tab = req.body.table
     let wheres = req.body.wheres
     let joins = req.body.joins
+    let group = req.body.group
     let order = req.body.order
     let limit = req.body.limit
 
@@ -57,6 +58,10 @@ const queryBuilder = (req) => {
                 }
             }
         }
+    }
+    if(group != '') {
+        query += ' group by "' +
+            group.name + '"'
     }
     if(order.order != '' && order.clmtbl1.length > 0){
         query += ' order by "'

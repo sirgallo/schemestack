@@ -247,6 +247,29 @@
                     </b-card>
                   </div>
                 </b-tab>
+                <b-tab title="Group">
+                  <b-form>
+                    <h5>Build a Group By Statement (Optional)</h5>
+                    <hr>
+                    <b-form-group>
+                      <label for="grpby">Select Column from
+                        <strong>{{selectedTable.name}}</strong> (One):</label>
+                      <multiselect v-model="groupby"
+                        :options="selectedClms"
+                        :multiple="false"
+                        :close-on-select="true"
+                        label="name"
+                        track-by="name"
+                        id="grpby"></multiselect>
+                    </b-form-group>
+                  </b-form>
+                </b-tab>
+                <b-tab title="Have">
+                  <b-form>
+                    <h5>Build a Having Clause (Optional)</h5>
+                    <hr>
+                  </b-form>
+                </b-tab>
                 <b-tab title = "Order">
                   <b-form>
                     <h5>Build an Order By Statement (Optional)</h5>
@@ -439,6 +462,7 @@ export default {
         val: 0,
       },
       selectedWhrs: [],
+      groupby: '',
       limit: 3500,
       selectedTableJoins: '',
       tableJoins: {
@@ -597,6 +621,7 @@ export default {
         columns: this.selectedClms,
         wheres: this.selectedWhrs,
         joins: this.tableJoins,
+        group: this.groupby,
         order: this.orderBy,
         limit: this.limit,
       };
