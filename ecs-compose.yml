@@ -1,69 +1,41 @@
-version: "3.7"
+version: '3'
 services:
     schemefront:
         image: schemefront_img
-        container_name: schemefront_inst
-        build:
-            context: ./schemefront
         ports:
             - '8088:8088'
         environment:
             - NODE_ENV=docker
             - NODE_OPTIONS="--max-old-space-size=4096"
-        volumes:
-            - appdata:/usr/src/app
-        networks:
-            - schemenetwork
+        links:
+            - 'schemeapi'
+            - 'modelsapi'
     modelsapi:
         image: modelsapi_img
-        container_name: modelsapi_inst
-        build:
-            context: ./modelsapi
         ports:
             - '8087:8087'
         environment:
             - NODE_ENV=docker
             - NODE_OPTIONS="--max-old-space-size=4096"
-        volumes:
-            - modelsdata:/user/src/app
         links:
             - 'schemeapi:prestoapi'
             - 'schememodels:mysql'
-        networks:
-            - schemenetwork
     schemeapi:
         image: schemeapi_img
-        container_name: schemeapi_inst
-        build:
-            context: ./schemeapi
         ports:
             - '8086:8086'
         environment:
             - NODE_ENV=docker
             - NODE_OPTIONS="--max-old-space-size=4096"
-        volumes:
-            - apidata:/usr/src/app
-        networks:
-            - schemenetwork
     schememodels:
         image: mariadb
-        container_name: schememodels_inst
         environment:
             - MYSQL_DATABASE=schememodels
             - MYSQL_ROOT_PASSWORD=rootscheme
         volumes:
-            - ./schememodels:/etc/mysql/conf.d:ro
-            - ./schememodels:/docker-entrypoint-initdb.d:ro
+
             - dbdata:/var/lib/mysql
         ports:
             - '8085:8085'
-        networks:
-            - schemenetwork
-networks:
-    schemenetwork:
-        driver: bridge
 volumes:
-    appdata:
-    apidata:
-    modelsdata:
     dbdata:
