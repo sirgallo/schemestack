@@ -47,6 +47,8 @@ const queryBuilder = (req) => {
                 query += tab + '"'
             }
         }
+        else if(cols.length == 1)
+            query += ' from "' + tab + '"'
         if(wheres.length > 0) {
             query += ' where '
             if(wheres.length == 1) {
