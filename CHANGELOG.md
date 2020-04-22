@@ -2,7 +2,7 @@
 
 ## v0.1 - April 9, 2020
 
-This is the first test release. This release contained the bare minimum required to query Presto using Scheme's Query Generation tool
+This is the first test release. This release contains the bare minimum required to query Presto using Scheme's Query Generation tool, which currently includes Select, Join, Where, Order By, and Limit Clauses.
 
 ## v0.11 - April 21, 2020
 
