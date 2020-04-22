@@ -9,8 +9,11 @@ const tablebuilder = tableBuilder.tableBuilder
 
 router.post('/', (req, res, next) => {
     console.log('Hi you made it to the query route!')
-    let query = querybuilder(req)
-
+    let query = ''
+    if(req.body.hasOwnProperty('columns') && req.body.hasOwnProperty('table'))
+        query = querybuilder(req)
+    else
+        query = req.body.query
     prestocli.PrestoClient(req.body.presto, query)
         .then(data => {
             console.log('returned from prestoclient!')

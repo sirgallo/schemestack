@@ -21,8 +21,8 @@ const MapSchema = (data) => {
         }
     }
 
-    console.log('This is the query to insert the new schema...')
-    console.log(insertschema)
+    //console.log('This is the query to insert the new schema...')
+    //console.log(insertschema)
 
     return new Promise((resolve, reject) => {
         const maria = new Maria.MariaDB()

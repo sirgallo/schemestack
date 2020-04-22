@@ -37,6 +37,14 @@ create table if not exists schememodels.users (
     primary key (id)
 );
 
+create table if not exists schememodels.queries (
+    id bigint not null auto_increment,
+    presto_id bigint not null,
+    query_alias varchar(256) not null,
+    query_sql varchar(2048) not null,
+    primary key (id)
+);
+
 create table if not exists schememodels.charts (
     id bigint not null auto_increment,
     presto_id bigint not null,

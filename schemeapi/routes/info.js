@@ -7,7 +7,7 @@ router.post('/', (req, res, next) => {
     console.log('Hi you made it to the info route!')
     prestocli.PrestoClient(req.body.presto, req.body.query)
         .then(schema => {
-            entities = schema.data
+            entities = schema.data[0]
             res.send({'status': 'success','data': entities})
         })
         .catch(err => {

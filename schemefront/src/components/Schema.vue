@@ -149,7 +149,34 @@
           <div v-if="selectedClms.length > 0">
             <b-card no-body>
               <b-tabs pills card vertical>
-                <b-tab title="Join" active>
+                <b-tab title="Function" active>
+                  <b-form>
+                    <h5>Select a Function (Optional)</h5>
+                    <hr>
+                    <b-form-group>
+                      <label for="selectFun">Functions (One):</label>
+                      <b-form-select v-model="selectedFunction.fun"
+                                  :options="sqlFunctions"
+                                  id="selectFun">
+                      </b-form-select>
+                    <b-form-group>
+                    <div v-if="selectedFunction.fun !== ''">
+                      <b-form-group>
+                        <label for="selectFunClm">Select Column from
+                          <strong>{{selectedTable.name}}</strong> to Perform
+                          <strong>{{selectedFunction.fun}}</strong> On (One):</label>
+                        <multiselect v-model="selectedFunction.clm"
+                                    :options="selectedClms"
+                                    :multiple="false"
+                                    :close-on-select="true"
+                                    label="name"
+                                    track-by="name"
+                                    id="selectFunClm"></multiselect>
+                      </b-form-group>
+                    </div>
+                  </b-form>
+                </b-tab>
+                <b-tab title="Join">
                   <b-form>
                     <h5>Build a Join Statement (Optional)</h5>
                     <hr>
@@ -159,7 +186,7 @@
                       </b-form-select>
                     </b-form-group>
                     <b-form-group>
-                      <label for="selectcolOrig">Select Column From:
+                      <label for="selectcolOrig">Select Column From
                         <strong>{{selectedTable.name}}</strong> (One):</label>
                       <multiselect v-model="tableJoins.clmorig"
                         :options="selectedTable.columns"
@@ -252,7 +279,7 @@
                     <h5>Build a Group By Statement (Optional)</h5>
                     <hr>
                     <b-form-group>
-                      <label for="grpby">Select Column from
+                      <!--<label for="grpby">Select Column from
                         <strong>{{selectedTable.name}}</strong> (One):</label>
                       <multiselect v-model="groupby"
                         :options="selectedClms"
@@ -260,7 +287,11 @@
                         :close-on-select="true"
                         label="name"
                         track-by="name"
-                        id="grpby"></multiselect>
+                        id="grpby"></multiselect> -->
+                        <b-form-select v-model="groupby"
+                                      :options="groupTerms"
+                                      placeholder="select a grouping expression">
+                        </b-form-select>
                     </b-form-group>
                   </b-form>
                 </b-tab>
@@ -438,6 +469,19 @@ export default {
       restab: '',
       query: '',
       queryfailure: '',
+      sqlFunctions: [
+        { value: '', text: 'select a function' },
+        { value: 'count', text: 'count' },
+        { value: 'sum', text: 'sum' },
+        { value: 'avg', text: 'avg' },
+        { value: 'min', text: 'min' },
+        { value: 'max', text: 'max' },
+      ],
+      selectedFunction: {
+        fun: '',
+        clm: '',
+      },
+      selectedFuns: [],
       comparison: [
         { value: '', text: 'select a comparison' },
         { value: '=', text: 'equals' },
@@ -462,6 +506,11 @@ export default {
         val: 0,
       },
       selectedWhrs: [],
+      groupTerms: [
+        { value: '', text: 'select a grouping expression' },
+        { value: 'cube', text: 'cube' },
+        { value: 'rollup', text: 'rollup' },
+      ],
       groupby: '',
       limit: 3500,
       selectedTableJoins: '',
@@ -619,6 +668,7 @@ export default {
         presto: this.selectedPresto[0],
         table: this.selectedTable.name,
         columns: this.selectedClms,
+        func: this.selectedFunction,
         wheres: this.selectedWhrs,
         joins: this.tableJoins,
         group: this.groupby,
@@ -698,6 +748,9 @@ export default {
         });
     },
     initData() {
+      this.groupby = '';
+      this.selectedFunction.fun = '';
+      this.selectedFunction.clm = '';
       this.selectedTable = '';
       this.selectedClms = [];
       this.results = [];

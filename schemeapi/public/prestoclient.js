@@ -52,7 +52,6 @@ const PrestoClient = async (prestoinst, query) => {
         console.log('')
         console.log('""""""""""""""""""""""""""""""""')
 
-        console.log(response)
         if(response.hasOwnProperty('message')) {
             reserr = {
                 message: response.message
@@ -62,7 +61,7 @@ const PrestoClient = async (prestoinst, query) => {
         else {
             let jsonres = {
                 columns: response.columns[0],
-                data: response.data[0]
+                data: response.data
             }
             return jsonres
         }

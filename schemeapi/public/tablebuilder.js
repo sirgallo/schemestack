@@ -4,11 +4,12 @@ const tableBuilder = (data) => {
         table += '<th scope="col">' + data.columns[i].name + '</th>'
     table += '</tr></thead><tbody>'
     for(let i = 0; i < data.data.length; i++) {
-        table += '<tr>'
-        for(let j = 0; j <data.data[i].length; j++) {
-            table += '<td>' + data.data[i][j] + '</td>'
+        for(let j = 0; j < data.data[i].length; j++) {
+            table += '<tr>'
+            for(let k = 0; k < data.data[i][j].length; k++)
+                table += '<td>' + data.data[i][j][k] + '</td>'
+            table += '</tr>'
         }
-        table += '</tr>'
     }
     table += '</tbody></table></div>'
 
