@@ -690,8 +690,8 @@ export default {
       this.block = 'results';
     },
     getResult(query, config) {
-      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8086/query', query, config)
-      axios.post('http://localhost:8086/query', query, config)
+      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8086/query', query, config)
+      // axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
           this.restab = res.data.table;
