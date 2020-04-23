@@ -7,6 +7,9 @@
             <h4>Current Schema Instances</h4>
             <h6>Select An Instance to Begin</h6>
             <hr>
+            <b-alert show variant="info">Go to the Dashboard to See Future Updates!
+            </b-alert>
+            <hr>
             <b-button variant="info"
                       v-b-modal.presto-modal>Connect
             </b-button>
@@ -295,7 +298,7 @@
                     </b-form-group>
                   </b-form>
                 </b-tab>
-                <b-tab title="Have">
+                <b-tab title="Have" disabled>
                   <b-form>
                     <h5>Build a Having Clause (Optional)</h5>
                     <hr>
@@ -363,13 +366,13 @@
                 </b-tab>
                 <b-tab title="Limit">
                   <b-form>
-                    <h5>Limit Results, Defaults to 3500 (Optional)</h5>
+                    <h5>Limit Results, Defaults to 500 (Optional)</h5>
                     <hr>
                     <b-form-group>
                       <label for="enterlim">Enter Limit:</label>
                       <b-form-input id="enterlim"
                                     v-model="limit"
-                                    placeholder="3500">
+                                    placeholder="500">
                       </b-form-input>
                     </b-form-group>
                   </b-form>
@@ -491,7 +494,7 @@ export default {
         { value: '<=', text: 'less than or equal to' },
         { value: '>=', text: 'greater than or equal to' },
         { value: '>', text: 'greater than' },
-        { value: 'like', text: 'like' },
+        // { value: 'like', text: 'like' },
       ],
       joinsType: [
         { value: '', text: 'select a join type' },
@@ -513,7 +516,7 @@ export default {
         { value: 'rollup', text: 'rollup' },
       ],
       groupby: '',
-      limit: 3500,
+      limit: 500,
       selectedTableJoins: '',
       tableJoins: {
         slctjoins: [],
@@ -789,7 +792,7 @@ export default {
       this.orderBy.clmtbl2 = [];
       this.orderBy.order = '';
       this.queryfailure = '';
-      this.limit = 3500;
+      this.limit = 500;
     },
   },
 };
