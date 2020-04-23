@@ -402,6 +402,11 @@
               <b-tab title="Return" active>
                 <b-button @click="onBack" variant="warning" class="mr-2">Back</b-button>
               </b-tab>
+              <b-tab title="Save Query" disabled>
+                <b-form-group>
+                  <p>Coming Soon!</p>
+                </b-form-group>
+              </b-tab>
               <b-tab title="Chart" disabled>
                 <b-card>
                   <b-form-group>
