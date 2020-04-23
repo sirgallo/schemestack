@@ -691,7 +691,7 @@ export default {
     },
     getResult(query, config) {
       axios.post('0.0.0.0:8086/query')
-      axios.post('http://localhost:8086/query', query, config)
+      // axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
           this.restab = res.data.table;
