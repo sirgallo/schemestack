@@ -559,7 +559,8 @@ export default {
       this.getPrestos();
     },
     getPrestos() {
-      axios.get('http://localhost:8087/prestos')
+      axios.get('0.0.0.0:8087/prestos')
+      // axios.get('http://localhost:8087/prestos')
         .then((res) => {
           this.prestos = res.data.prestos;
         })
@@ -568,7 +569,8 @@ export default {
         });
     },
     addPresto(request, config) {
-      axios.post('http://localhost:8087/prestos/create', request, config)
+      axios.post('0.0.0.0:8087/prestos/create', request, config)
+      // axios.post('http://localhost:8087/prestos/create', request, config)
         .then(() => {
           this.getPrestos();
           this.message = 'Successfully added new Schema';
@@ -631,7 +633,8 @@ export default {
       this.block = 'query';
     },
     getSchema(schema, config) {
-      axios.post('http://localhost:8087/schemas/schema', schema, config)
+      axios.post('0.0.0.0:8087/schemas/schema', schema, config)
+      // axios.post('http://localhost:8087/schemas/schema', schema, config)
         .then((res) => {
           this.tables = res.data.tables;
         })
@@ -687,6 +690,7 @@ export default {
       this.block = 'results';
     },
     getResult(query, config) {
+      axios.post('0.0.0.0:8086/query')
       axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
@@ -708,8 +712,8 @@ export default {
           'Content-Type': 'application/json',
         },
       };
-
-      axios.post('http://localhost:8087/charts/create', this.chart, config)
+      axios.post('0.0.0.0:8087/charts/create', this.chart, config)
+      // axios.post('http://localhost:8087/charts/create', this.chart, config)
         .then(() => {
           this.chart.p_id = 0;
           this.chart.query = '';
@@ -739,7 +743,8 @@ export default {
       this.postDelete(prestoid, config);
     },
     postDelete(prestoid, config) {
-      axios.post('http://localhost:8087/prestos/delete', prestoid, config)
+      axios.post('0.0.0.0:8087/prestos/delete', prestoid, config)
+      // axios.post('http://localhost:8087/prestos/delete', prestoid, config)
         .then(() => {
           this.reInit();
         })
