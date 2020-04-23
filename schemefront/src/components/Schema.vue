@@ -690,7 +690,7 @@ export default {
       this.block = 'results';
     },
     getResult(query, config) {
-      axios.post('0.0.0.0:8086/query')
+      axios.post('0.0.0.0:8086/query', query, config)
       // axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
