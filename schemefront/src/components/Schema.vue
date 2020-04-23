@@ -8,7 +8,7 @@
             <h6>Select An Instance to Begin</h6>
             <hr>
             <b-button variant="info"
-                      v-b-modal.presto-modal>Create
+                      v-b-modal.presto-modal>Connect
             </b-button>
             <b-modal ref="PrestoCredsForm"
                     id="presto-modal"
@@ -399,7 +399,7 @@
               <b-tab title="Return" active>
                 <b-button @click="onBack" variant="warning" class="mr-2">Back</b-button>
               </b-tab>
-              <b-tab title="Chart">
+              <b-tab title="Chart" disabled>
                 <b-card>
                   <b-form-group>
                     <label for="chartname">Enter Chart Name:</label>
@@ -450,6 +450,7 @@ export default {
   name: 'Schema',
   data() {
     return {
+      currentHostname: '',
       prestos: [],
       selectedPresto: [],
       block: '',
@@ -544,6 +545,7 @@ export default {
     };
   },
   mounted() {
+    this.currentHostname = window.location.hostname;
     this.reInit();
   },
   watch: {
@@ -559,7 +561,9 @@ export default {
       this.getPrestos();
     },
     getPrestos() {
-      axios.get('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos')
+      const path = `http://${this.currentHostname}:8087/prestos`;
+      axios.get(path)
+      // axios.get('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos')
       // axios.get('http://localhost:8087/prestos')
         .then((res) => {
           this.prestos = res.data.prestos;
@@ -569,7 +573,9 @@ export default {
         });
     },
     addPresto(request, config) {
-      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos/create', request, config)
+      const path = `http://${this.currentHostname}:8087/prestos/create`;
+      axios.post(path, request, config)
+      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos/create', request, config)
       // axios.post('http://localhost:8087/prestos/create', request, config)
         .then(() => {
           this.getPrestos();
@@ -633,7 +639,9 @@ export default {
       this.block = 'query';
     },
     getSchema(schema, config) {
-      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/schemas/schema', schema, config)
+      const path = `http://${this.currentHostname}:8087/schemas/schema`;
+      axios.post(path, schema, config)
+      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/schemas/schema', schema, config)
       // axios.post('http://localhost:8087/schemas/schema', schema, config)
         .then((res) => {
           this.tables = res.data.tables;
@@ -690,7 +698,9 @@ export default {
       this.block = 'results';
     },
     getResult(query, config) {
-      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8086/query', query, config)
+      const path = `http://${this.currentHostname}:8086/query`;
+      axios.post(path, query, config)
+      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8086/query', query, config)
       // axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
@@ -712,7 +722,9 @@ export default {
           'Content-Type': 'application/json',
         },
       };
-      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/charts/create', this.chart, config)
+      const path = `http://${this.currentHostname}:8087/charts/create`;
+      axios.post(path, this.chart, config)
+      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/charts/create', this.chart, config)
       // axios.post('http://localhost:8087/charts/create', this.chart, config)
         .then(() => {
           this.chart.p_id = 0;
@@ -743,7 +755,9 @@ export default {
       this.postDelete(prestoid, config);
     },
     postDelete(prestoid, config) {
-      axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos/delete', prestoid, config)
+      const path = `http://${this.currentHostname}:8087/prestos/delete`;
+      axios.post(path, prestoid, config)
+      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos/delete', prestoid, config)
       // axios.post('http://localhost:8087/prestos/delete', prestoid, config)
         .then(() => {
           this.reInit();
