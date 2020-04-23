@@ -120,6 +120,9 @@
           </div>
         </div>
       </b-jumbotron>
+      <b-alert show variant="warning">Query Limit Defaults to 500 For Demo Purposes,
+        Full Software Allows a User Set Query Limit
+      </b-alert>
     </div>
     <div v-if="block ==='query'" class="container">
       <b-jumbotron>
@@ -364,7 +367,7 @@
                     </b-form-group>
                   </b-form>
                 </b-tab>
-                <b-tab title="Limit">
+                <b-tab title="Limit" disabled>
                   <b-form>
                     <h5>Limit Results, Defaults to 500 (Optional)</h5>
                     <hr>
