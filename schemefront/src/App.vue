@@ -7,15 +7,15 @@
         <b-link to="/dashboard">Dashboard</b-link>
       </b-navbar-nav>
       <n-navbar-nav class="ml-auto">
-        <b-navbar-brand>
+        <!--<b-navbar-brand>
           <p class="font-weight-lighter font-italic d-inline-block">Powered by </p>
-        </b-navbar-brand>
+        </b-navbar-brand>-->
         <b-navbar-brand>
-          <img src="./assets/presto_logo_product.png"
+          <img src="./assets/visiblelogo.jpeg"
               class="d-inline-block"
               height="45"
-              width="90"
-              alt="Presto">
+              width="45"
+              alt="Logo">
         </b-navbar-brand>
       </n-navbar-nav>
     </b-navbar>
