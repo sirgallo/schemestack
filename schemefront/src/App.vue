@@ -1,15 +1,31 @@
 <template>
   <div id="app">
-    <b-navbar type="light" variant="light">
+    <b-navbar toggleable="sm" type="light" variant="light">
+      <b-navbar-brand>
+        <img src="./assets/visiblelogo-circle.png"
+          class="d-inline-block"
+          height="45"
+          width="45"
+          alt="Logo">
+      </b-navbar-brand>
       <b-navbar-brand>Sight</b-navbar-brand>
-      <b-navbar-nav>
-        <b-link class="mr-3" to="/">Analyze</b-link>
-        <b-link to="/dashboard">Dashboard</b-link>
-      </b-navbar-nav>
-      <n-navbar-nav class="ml-auto">
-        <!--<b-navbar-brand>
-          <p class="font-weight-lighter font-italic d-inline-block">Powered by </p>
-        </b-navbar-brand>-->
+      <b-navbar-toggle target="tools">
+        <template vslot:default="{ expanded }">
+          <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+          <b-icon v-else icon="chevron-bar-down"></b-icon>
+        </template>
+      </b-navbar-toggle>
+      <b-collapse id="tools" is-nav>
+        <b-navbar-nav>
+          <!--
+          <b-link class="mr-3" to="/">Analyze</b-link>
+          <b-link to="/dashboard">Dashboard</b-link>
+          -->
+          <b-nav-item to="/">Analyze</b-nav-item>
+          <b-nav-item to="/dashboard">Dashboard</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+      <!--<n-navbar-nav class="ml-auto">
         <b-navbar-brand>
           <img src="./assets/visiblelogo.jpeg"
               class="d-inline-block"
@@ -17,7 +33,7 @@
               width="45"
               alt="Logo">
         </b-navbar-brand>
-      </n-navbar-nav>
+      </n-navbar-nav>-->
     </b-navbar>
     <router-view/>
   </div>
