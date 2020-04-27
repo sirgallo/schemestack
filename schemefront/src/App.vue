@@ -17,23 +17,10 @@
       </b-navbar-toggle>
       <b-collapse id="tools" is-nav>
         <b-navbar-nav>
-          <!--
-          <b-link class="mr-3" to="/">Analyze</b-link>
-          <b-link to="/dashboard">Dashboard</b-link>
-          -->
           <b-nav-item to="/">Analyze</b-nav-item>
           <b-nav-item to="/dashboard">Dashboard</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
-      <!--<n-navbar-nav class="ml-auto">
-        <b-navbar-brand>
-          <img src="./assets/visiblelogo.jpeg"
-              class="d-inline-block"
-              height="45"
-              width="45"
-              alt="Logo">
-        </b-navbar-brand>
-      </n-navbar-nav>-->
     </b-navbar>
     <router-view/>
   </div>
