@@ -18,7 +18,7 @@
       <b-collapse id="tools" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Analyze</b-nav-item>
-          <b-nav-item to="/dashboard">Dashboard</b-nav-item>
+          <b-nav-item to="/dashboard">Reflect</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

@@ -12,7 +12,7 @@
             </b-button>
             <b-modal ref="PrestoCredsForm"
                     id="presto-modal"
-                    title="Connect using your existing Presto Credentials"
+                    title="Connect Using Existing Presto Cluster Credentials"
                     hide-footer>
               <b-form @submit="onSubmit" @reset="onReset" class="w-100">
               <b-form-group id="form-alias-group"
