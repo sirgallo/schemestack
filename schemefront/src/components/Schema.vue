@@ -7,9 +7,6 @@
             <h4>Current Schema Instances</h4>
             <h6>Select An Instance to Begin</h6>
             <hr>
-            <b-alert show variant="info">Go to the Dashboard to See Future Updates!
-            </b-alert>
-            <hr>
             <b-button variant="info"
                       v-b-modal.presto-modal>Connect
             </b-button>
