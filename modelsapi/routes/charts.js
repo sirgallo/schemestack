@@ -8,13 +8,14 @@ const fetchdata = require('../public/fetchdata')
 router.get('/', (req, res, next) => {
     console.log('Getting all charts! Wait...')
     let query = "select * from `charts`"
+    const maria = new Maria.MariaDB()
     maria.query(query)
         .then(rows => {
             maria.close()
                 .then(() => {
                     fetchdata.fetchData(prestoinst, query)
-                        .then(data => {
-                            let resdata = data.data
+                        .then(charts => {
+                            res.send(JSON.parse(JSON.stringify({'status': 'success', 'charts': charts})))
                         })
                 })
         })

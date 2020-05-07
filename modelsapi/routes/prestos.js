@@ -27,6 +27,27 @@ router.get('/', (req, res, next) => {
         })
 })
 
+router.post('/presto', (req, res, next) => {
+    console.log('Preparing to fetch Presto with Id: ' + req.body.prestoid)
+    const query = 'select * from `prestocreds` where id = ' + req.body.prestoid
+
+    const maria = new Maria.MariaDB()
+    maria.query(query)
+        .then(presto => {
+            console.log('Successfully got instance...')
+            console.log('Instance: ')
+            console.log(JSON.parse(JSON.stringify({'presto': presto})))
+            maria.close()
+                .then(() => {
+                    res.send(JSON.parse(JSON.stringify({'presto': presto})))
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.send({'status': 'failure', 'message': 'Hmm looks like we could not find that presto instance...'})
+        })
+})
+
 router.post('/delete', (req, res, next) => {
     console.log('Preparing to delete Presto Entry')
     let deleteschema = "delete from `schemas` where `table_catalog` = '" +
@@ -34,6 +55,8 @@ router.post('/delete', (req, res, next) => {
         req.body.schema + "'"
     let deletepresto = "delete from `prestocreds` where `id` = " + req.body.prestoid
     let deletecharts = "delete from `charts` where `presto_id` = " + req.body.prestoid
+    let deletequeries = "delete from `queries` where `presto_id` = " + req.body.prestoid
+    
     const maria = new Maria.MariaDB()
     maria.delete(deletecharts)
         .then(() => {
@@ -41,10 +64,13 @@ router.post('/delete', (req, res, next) => {
                 .then(() => {
                     maria.delete(deleteschema)
                         .then(() => {
-                            maria.close()
+                            maria.delete(deletequeries)
                                 .then(() => {
-                                    console.log('successfully deleted Instance and associated Schema')
-                                    res.send({'status': 'success'})
+                                    maria.close()
+                                        .then(() => {
+                                            console.log('successfully deleted Instance and associated Schema')
+                                            res.send({'status': 'success'})
+                                        })
                                 })
                         })
                 })
@@ -56,7 +82,6 @@ router.post('/delete', (req, res, next) => {
 })
 
 router.post('/create', (req, res, next) => {
-
     console.log('Preparing to create new instance...')
 
     //  object for presto credentials

@@ -7,6 +7,7 @@ const logger = require('morgan')
 const prestosRouter = require('./routes/prestos')
 const schemasRouter = require('./routes/schemas')
 const usersRouter = require('./routes/users')
+const queriesRouter = require('./routes/queries')
 const chartsRouter = require('./routes/charts')
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/prestos', prestosRouter)
 app.use('/schemas', schemasRouter)
 app.use('/users', usersRouter)
+app.use('/queries', queriesRouter)
 app.use('/charts', chartsRouter)
 
 module.exports = app

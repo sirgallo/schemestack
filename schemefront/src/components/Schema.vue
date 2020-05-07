@@ -117,9 +117,9 @@
           </div>
         </div>
       </b-jumbotron>
-      <b-alert show variant="warning">Query Limit Defaults to 500 For Demo Purposes,
+      <!--<b-alert show variant="warning">Query Limit Defaults to 500 For Demo Purposes,
         Full Software Allows a User Set Query Limit
-      </b-alert>
+      </b-alert>-->
     </div>
     <div v-if="block ==='query'" class="container">
       <b-jumbotron>
@@ -402,10 +402,17 @@
               <b-tab title="Return" active>
                 <b-button @click="onBack" variant="warning" class="mr-2">Back</b-button>
               </b-tab>
-              <b-tab title="Save Query" disabled>
-                <b-form-group>
-                  <p>Coming Soon!</p>
-                </b-form-group>
+              <b-tab title="Save Query">
+                <b-card>
+                  <b-form-group>
+                    <label for="queryname">Enter Query Name:</label>
+                    <b-form-input id="queryname"
+                                  v-model="savedquery.alias"
+                                  placeholder="name">
+                    <b-form-input>
+                  </b-form-group>
+                  <b-button @click="onSaveQuery" variant="info">Save Query?</b-button>
+                </b-card>
               </b-tab>
               <b-tab title="Chart" disabled>
                 <b-card>
@@ -539,6 +546,11 @@ export default {
         clmtbl1: [],
         clmtbl2: [],
         order: '',
+      },
+      savedquery: {
+        p_id: 0,
+        alias: '',
+        query: '',
       },
       chartTypes: [
         { value: 'line', text: 'line' },
@@ -714,6 +726,27 @@ export default {
           this.queryfailure = res.data.message;
           this.restab = res.data.table;
           this.query = res.data.query;
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
+    onSaveQuery(evt) {
+      evt.preventDefault();
+      this.savedquery.p_id = this.selectedPresto[0].id;
+      this.savedquery.query = this.query;
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      };
+      const path = `http://${this.currentHostname}:8087/queries/create`;
+      axios.post(path, this.savedquery, config)
+        .then(() => {
+          this.savedquery.p_id = 0;
+          this.savedquery.query = '';
+          this.savedquery.alias = '';
         })
         .catch((err) => {
           throw err;

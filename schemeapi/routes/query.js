@@ -9,6 +9,8 @@ const tablebuilder = tableBuilder.tableBuilder
 
 router.post('/', (req, res, next) => {
     console.log('Hi you made it to the query route!')
+    console.log('Presto Instance: ')
+    console.log(req.body.presto)
     let query = ''
     if(req.body.hasOwnProperty('columns') && req.body.hasOwnProperty('table'))
         query = querybuilder(req)
