@@ -440,7 +440,7 @@
         <hr>
         <b-alert show variant="secondary">
           <strong>
-            <a href="http://resources.visiblesystemscorp.com/en-us/neverlosesightofyourdata">Query Limit Set for Demo Purposes, Click Here to Learn More</a>
+            <a href="http://resources.visiblesystemscorp.com/en-us/neverlosesightofyourdata" target="_blank">Query Limit Set for Demo Purposes, Click Here to Learn More</a>
           </strong>
         </b-alert>
         <hr>
