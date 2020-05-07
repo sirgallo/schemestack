@@ -4,7 +4,7 @@
       <b-jumbotron>
         <div class="row">
           <div class="col-sm-10">
-            <h4>Current Schema Instances</h4>
+            <h4>Instances of Your Data</h4>
             <h6>Select An Instance to Begin</h6>
             <hr>
             <b-button variant="info"
@@ -112,7 +112,7 @@
               </b-card>
             </div>
             <div v-else>
-              <b-alert show variant="warning">No Schema Instances Saved...Create One!</b-alert>
+              <b-alert show variant="warning">No Data Instances...Create One!</b-alert>
             </div>
           </div>
         </div>
@@ -366,13 +366,13 @@
                 </b-tab>
                 <b-tab title="Limit" disabled>
                   <b-form>
-                    <h5>Limit Results, Defaults to 500 (Optional)</h5>
+                    <h5>Limit Results, Defaults to 100 (Optional)</h5>
                     <hr>
                     <b-form-group>
                       <label for="enterlim">Enter Limit:</label>
                       <b-form-input id="enterlim"
                                     v-model="limit"
-                                    placeholder="500">
+                                    placeholder="100">
                       </b-form-input>
                     </b-form-group>
                   </b-form>
@@ -437,6 +437,12 @@
         <b-card>
           <h4>Results for "{{query}}"</h4>
         </b-card>
+        <hr>
+        <b-alert show variant="secondary">
+          <strong>
+            <a href="http://resources.visiblesystemscorp.com/en-us/neverlosesightofyourdata">Query Limit Set for Demo Purposes, Click Here to Learn More</a>
+          </strong>
+        </b-alert>
         <hr>
         <div v-html="restab"></div>
       </div>
@@ -528,7 +534,7 @@ export default {
         { value: 'rollup', text: 'rollup' },
       ],
       groupby: '',
-      limit: 500,
+      limit: 100,
       selectedTableJoins: '',
       tableJoins: {
         slctjoins: [],
@@ -830,7 +836,7 @@ export default {
       this.orderBy.clmtbl2 = [];
       this.orderBy.order = '';
       this.queryfailure = '';
-      this.limit = 500;
+      this.limit = 100;
     },
   },
 };

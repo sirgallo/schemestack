@@ -8,7 +8,7 @@
           width="45"
           alt="Logo">
       </b-navbar-brand>
-      <b-navbar-brand>Sight. Never Lose Sight of Your Data &trade;</b-navbar-brand>
+      <b-navbar-brand>Visible&reg; Sight. Never Lose Sight of Your Data&trade;</b-navbar-brand>
       <b-navbar-toggle target="tools">
         <template vslot:default="{ expanded }">
           <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
