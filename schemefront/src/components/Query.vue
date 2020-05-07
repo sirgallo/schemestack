@@ -6,7 +6,8 @@
           <div class="col-sm-10">
             <h4>Current Saved Queries</h4>
             <h6>Select a Query to Run</h6>
-            <br><br>
+            <hr>
+            <br>
             <div v-if="queries.length > 0">
               <b-card>
                 <v-table class="table table-hover"
