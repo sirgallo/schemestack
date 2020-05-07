@@ -36,11 +36,11 @@
         <p><strong>Current Work in Progress...Updates Will Come Soon!</strong></p>
         <p>Upcoming Features...</p>
         <ul>
-          <li>Having Clause (Complete by end of week 4/20)</li>
-          <li>Like Clause for Where, currently only values (Complete by end of week 4/20)</li>
-          <li>Multiple Aggregate SQL Functions (Complete by end of week 4/27)</li>
-          <li>Saved Queries (Complete by end of week 4/27)</li>
-          <li>Frontend User Login and Vuex User Store (Complete by end of week 5/4)</li>
+          <li>Having Clause (Complete by end of week 5/4)</li>
+          <li>Like Clause for Where, currently only values (Complete by end of week 5/4)</li>
+          <li>Multiple Aggregate SQL Functions (Complete by end of week 5/4)</li>
+          <li>Saved Queries (Done)</li>
+          <li>Frontend User Login and Vuex User Store (Complete by end of week 5/11)</li>
       </b-jumbotron>
     </div>
   </div>

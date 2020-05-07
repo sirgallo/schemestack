@@ -1,22 +1,21 @@
 <template>
   <div class="dashboard">
     <br><br>
-    <!--<Chart/>-->
     <Query/>
+    <br>
+    <Chart/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import Chart from '@/components/Chart.vue';
+import Chart from '@/components/Chart.vue';
 import Query from '@/components/Query.vue';
 
 export default {
   name: 'Dashboard',
   components: {
-    /*
     Chart,
-    */
     Query,
   },
 };
