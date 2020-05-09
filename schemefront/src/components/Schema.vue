@@ -364,15 +364,15 @@
                     </b-form-group>
                   </b-form>
                 </b-tab>
-                <b-tab title="Limit" disabled>
+                <b-tab title="Limit">
                   <b-form>
-                    <h5>Limit Results, Defaults to 100 (Optional)</h5>
+                    <h5>Limit Results, Defaults to 2500 (Optional)</h5>
                     <hr>
                     <b-form-group>
                       <label for="enterlim">Enter Limit:</label>
                       <b-form-input id="enterlim"
                                     v-model="limit"
-                                    placeholder="100">
+                                    placeholder="2500">
                       </b-form-input>
                     </b-form-group>
                   </b-form>
@@ -534,7 +534,7 @@ export default {
         { value: 'rollup', text: 'rollup' },
       ],
       groupby: '',
-      limit: 100,
+      limit: 2500,
       selectedTableJoins: '',
       tableJoins: {
         slctjoins: [],
@@ -836,7 +836,7 @@ export default {
       this.orderBy.clmtbl2 = [];
       this.orderBy.order = '';
       this.queryfailure = '';
-      this.limit = 100;
+      this.limit = 2500;
     },
   },
 };
