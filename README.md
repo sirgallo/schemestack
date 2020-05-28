@@ -45,8 +45,8 @@ If you run into bugs, **let me know!** I am currently working to test as many ca
 
 ## Some Guided Images...
 
-### Application Deployment
-![alt text](img_directions/Powershell.png)
+### Application Deployment (Powershell)
+![alt text](img_directions/Shell.png)
 
 ### Connect to Presto!
 ![alt text](img_directions/Connect.png)
