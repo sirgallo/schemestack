@@ -59,3 +59,6 @@ If you run into bugs, **let me know!** I am currently working to test as many ca
 
 ### Save Queries to Run in the Future!
 ![alt text](img_directions/Save.png)
+
+### Designed with Mobile and Desktop Use in Mind
+![alt text](img_directions/Mobile.png)
