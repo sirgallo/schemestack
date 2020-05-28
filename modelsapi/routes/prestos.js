@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
             console.log(JSON.parse(JSON.stringify({'prestos': prestos})))
             maria.close()
                 .then(() => {
-                    res.send(JSON.parse(JSON.stringify({'prestos': prestos})))
+                    res.status(200).send(JSON.parse(JSON.stringify({'prestos': prestos})))
                 })
         })
         .catch(err => {

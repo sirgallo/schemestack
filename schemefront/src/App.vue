@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <b-navbar toggleable="sm" type="light" variant="light">
-      <b-navbar-brand>
+      <!--<b-navbar-brand>
         <img src="./assets/visiblelogo-circle.png"
           class="d-inline-block"
           height="45"
           width="45"
           alt="Logo">
       </b-navbar-brand>
-      <b-navbar-brand>Visible&reg; Sight. Never Lose Sight of Your Data&trade;</b-navbar-brand>
+      <b-navbar-brand>Visible&reg; Sight. Never Lose Sight of Your Data&trade;
+      </b-navbar-brand>-->
+      <b-navbar-brand>Scheme</b-navbar-brand>
       <b-navbar-toggle target="tools">
         <template vslot:default="{ expanded }">
           <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>

@@ -437,12 +437,12 @@
         <b-card>
           <h4>Results for "{{query}}"</h4>
         </b-card>
-        <hr>
+        <!--<hr>
         <b-alert show variant="secondary">
           <strong>
             <a href="http://resources.visiblesystemscorp.com/en-us/neverlosesightofyourdata" target="_blank">Query Limit Set for Demo Purposes, Click Here to Learn More</a>
           </strong>
-        </b-alert>
+        </b-alert>-->
         <hr>
         <div v-html="restab"></div>
       </div>
