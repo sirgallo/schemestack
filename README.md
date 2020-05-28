@@ -35,7 +35,7 @@ That's it! You can also create as many of these as you need, depending on the am
 
 Click on a schema, select use and you will will be directed to the SQL generator, which will guide you through the query generation process, based off of the schema defintion that your schema instance contains. Your query can be as simple or complex as you want, up to you!
 
-Hit query, wait, and get results! Defaults to 3500 returned, but you can go higher at your own risk (you might run out of memory or experience an issue when the datasource is too large)
+Hit query, wait, and get results! Defaults to 2500 returned, but you can go higher at your own risk (you might run out of memory or experience an issue when the datasource is too large)
 
 Error in your query? No worries! Scheme will also return an error message directly from your Presto cluster if you made a mistake (or if Presto made a mistake...it might have).
 
@@ -46,16 +46,16 @@ If you run into bugs, **let me know!** I am currently working to test as many ca
 ## Some Guided Images...
 
 ### Application Deployment
-![alt text](img_directions/powershell.png)
-
-### Stack Running in Docker...
-![alt text](img_directions/docker.png)
+![alt text](img_directions/Powershell.png)
 
 ### Connect to Presto!
-![alt text](img_directions/create.png)
+![alt text](img_directions/Connect.png)
 
-### Generate a Query!
-![alt text](img_directions/generate.png)
+### Generate a Query using the Guided Query System!
+![alt text](img_directions/Query.png)
 
 ### Get Real Results Based on Your Data
-![alt text](img_directions/result.png)
+![alt text](img_directions/Results.png)
+
+### Save Queries to Run in the Future!
+![alt text](img_directions/Save.png)
