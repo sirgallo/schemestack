@@ -414,7 +414,7 @@
                   <b-button @click="onSaveQuery" variant="info">Save Query?</b-button>
                 </b-card>
               </b-tab>
-              <b-tab title="Chart" disabled>
+              <!--<b-tab title="Chart" disabled>
                 <b-card>
                   <b-form-group>
                     <label for="chartname">Enter Chart Name:</label>
@@ -430,19 +430,13 @@
                   </b-form-group>
                   <b-button @click="onChart" variant="info">Create Chart?</b-button>
                 </b-card>
-              </b-tab>
+              </b-tab>-->
             </b-tabs>
           </b-card>
         </b-jumbotron>
         <b-card>
           <h4>Results for "{{query}}"</h4>
         </b-card>
-        <!--<hr>
-        <b-alert show variant="secondary">
-          <strong>
-            <a href="http://resources.visiblesystemscorp.com/en-us/neverlosesightofyourdata" target="_blank">Query Limit Set for Demo Purposes, Click Here to Learn More</a>
-          </strong>
-        </b-alert>-->
         <hr>
         <div v-html="restab"></div>
       </div>
@@ -454,7 +448,6 @@
               <br>This was your query: <strong>"{{query}}"</strong>
               <br><strong>...Go Back and Build a New Query</strong>
             </b-alert>
-            <!--<b-alert show variant="danger">Go Back and Build a New Query</b-alert>-->
             <br>
             <b-button @click="onBack" variant="warning" class="mr-2">Back</b-button>
           </b-jumbotron>
@@ -667,8 +660,6 @@ export default {
     getSchema(schema, config) {
       const path = `http://${this.currentHostname}:8087/schemas/schema`;
       axios.post(path, schema, config)
-      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/schemas/schema', schema, config)
-      // axios.post('http://localhost:8087/schemas/schema', schema, config)
         .then((res) => {
           this.tables = res.data.tables;
         })
@@ -726,8 +717,6 @@ export default {
     getResult(query, config) {
       const path = `http://${this.currentHostname}:8086/query`;
       axios.post(path, query, config)
-      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8086/query', query, config)
-      // axios.post('http://localhost:8086/query', query, config)
         .then((res) => {
           this.queryfailure = res.data.message;
           this.restab = res.data.table;
@@ -771,8 +760,6 @@ export default {
       };
       const path = `http://${this.currentHostname}:8087/charts/create`;
       axios.post(path, this.chart, config)
-      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/charts/create', this.chart, config)
-      // axios.post('http://localhost:8087/charts/create', this.chart, config)
         .then(() => {
           this.chart.p_id = 0;
           this.chart.query = '';
@@ -804,8 +791,6 @@ export default {
     postDelete(prestoid, config) {
       const path = `http://${this.currentHostname}:8087/prestos/delete`;
       axios.post(path, prestoid, config)
-      // axios.post('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos/delete', prestoid, config)
-      // axios.post('http://localhost:8087/prestos/delete', prestoid, config)
         .then(() => {
           this.reInit();
         })
