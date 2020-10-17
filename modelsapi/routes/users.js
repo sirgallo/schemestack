@@ -31,9 +31,6 @@ router.post('/login', function(req, res, next) {
                                 res.send({'auth': false, 'token': null, 'user': null})
                             }
                         })
-                        .catch(err => {
-                            console.log(err)
-                        })
                 })
         })
         .catch(err => {
