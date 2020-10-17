@@ -16,7 +16,7 @@ const fetchData = async(prestoinst, query) => {
     }
 
     console.log('Preparing to find your data...')
-    console.log(request)
+    //console.log(request)
     try {
         let response = await Request(request)
         console.log('Returned your data!')

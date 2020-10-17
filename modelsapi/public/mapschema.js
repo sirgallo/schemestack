@@ -1,9 +1,7 @@
 const Maria = require('./mariadb')
 
 const MapSchema = async (data) => {
-
     //  go through json response for current schema and build insert query
-
     let insertschema = await BuildSchema(data)
         
     //console.log('This is the query to insert the new schema...')

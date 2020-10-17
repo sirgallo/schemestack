@@ -9,14 +9,14 @@ router.post('/schema', (req, res, next) => {
         "where `table_catalog` = '" + req.body.catalog + "' and " +
         "`table_schema` = '" + req.body.schema + "';"
 
-    console.log('Query for Schema: ', query)
+    //console.log('Query for Schema: ', query)
     console.log('Looking for Schema...please hold...')
 
     const maria = new Maria.MariaDB()
     maria.query(query)
         .then(schema => {
-            console.log('schema: ')
-            console.log(JSON.parse(JSON.stringify({'schema': schema})))
+            //console.log('schema: ')
+            //console.log(JSON.parse(JSON.stringify({'schema': schema})))
             maria.close()
                 .then(() => {
 

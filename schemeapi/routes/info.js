@@ -11,8 +11,8 @@ router.post('/', (req, res, next) => {
             res.send({'status': 'success','data': entities})
         })
         .catch(err => {
-            res.send({'status': err})
             console.log(err)
+            res.send({'status': err})
         })
 })
 
