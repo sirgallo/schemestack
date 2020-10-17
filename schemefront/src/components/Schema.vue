@@ -282,7 +282,7 @@
                     <h5>Build a Group By Statement (Optional)</h5>
                     <hr>
                     <b-form-group>
-                      <!--<label for="grpby">Select Column from
+                      <label for="grpby">Select Column from
                         <strong>{{selectedTable.name}}</strong> (One):</label>
                       <multiselect v-model="groupby"
                         :options="selectedClms"
@@ -290,11 +290,15 @@
                         :close-on-select="true"
                         label="name"
                         track-by="name"
-                        id="grpby"></multiselect> -->
-                        <b-form-select v-model="groupby"
-                                      :options="groupTerms"
-                                      placeholder="select a grouping expression">
-                        </b-form-select>
+                        id="grpby"></multiselect>
+                    </b-form-group>
+                    <h5>Or use a Group By Function</h5>
+                    <hr>
+                    <b-form-group>
+                      <b-form-select v-model="groupby"
+                                    :options="groupTerms"
+                                    placeholder="select a grouping expression">
+                      </b-form-select>
                     </b-form-group>
                   </b-form>
                 </b-tab>
