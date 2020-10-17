@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
     maria.query(query)
         .then(prestos => {
             console.log('Successfully grabbed rows...')
-            console.log('Prestos: ')
-            console.log(JSON.parse(JSON.stringify({'prestos': prestos})))
+            //console.log('Prestos: ')
+            //console.log(JSON.parse(JSON.stringify({'prestos': prestos})))
             maria.close()
                 .then(() => {
                     res.status(200).send(JSON.parse(JSON.stringify({'prestos': prestos})))
@@ -28,15 +28,15 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/presto', (req, res, next) => {
-    console.log('Preparing to fetch Presto with Id: ' + req.body.prestoid)
+    //console.log('Preparing to fetch Presto with Id: ' + req.body.prestoid)
     const query = 'select * from `prestocreds` where id = ' + req.body.prestoid
 
     const maria = new Maria.MariaDB()
     maria.query(query)
         .then(presto => {
             console.log('Successfully got instance...')
-            console.log('Instance: ')
-            console.log(JSON.parse(JSON.stringify({'presto': presto})))
+            //console.log('Instance: ')
+            //console.log(JSON.parse(JSON.stringify({'presto': presto})))
             maria.close()
                 .then(() => {
                     res.send(JSON.parse(JSON.stringify({'presto': presto})))
@@ -68,7 +68,7 @@ router.post('/delete', (req, res, next) => {
                                 .then(() => {
                                     maria.close()
                                         .then(() => {
-                                            console.log('successfully deleted Instance and associated Schema')
+                                            console.log('Successfully deleted Instance and associated Schema')
                                             res.send({'status': 'success'})
                                         })
                                 })
@@ -124,7 +124,7 @@ router.post('/create', (req, res, next) => {
                                 //  map the schema
                                 mapschema.MapSchema(entities)
                                     .then(() => {
-                                        console.log('we made it')
+                                        console.log('We made it')
                                         res.send({'status': 'success'})
                                     })
                             })
