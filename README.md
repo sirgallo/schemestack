@@ -1,7 +1,7 @@
 # Scheme
 ## A Query Builder Utilizing Presto SQL Engine
 
-Hi! Welcome to Scheme!
+Welcome to Scheme!
 
 This project intends to be a fast, no hassle, easy to set up and pain free query builder, utilizing Presto SQL Engine to run SQL queries.
 
@@ -11,12 +11,10 @@ How do I run this project? What dependencies do I need?
 
 *Fortunately, all you need is docker desktop or a docker-compose compatible service.*
 
-Wow! This application will run the same on any device that is capable of running docker, hassle free (well..maybe not the same based on the hardware...but still)! I personally hate long and tedious software setup processes, so I tried to make this as hassle free as possible!
-
 Steps to Run:
   - clone this git repository onto your machine
   - open powershell/terminal and go to the directory where you downloaded the repository
-  - in the root folder of the project, type: **docker-compose up -d --build schemefront modelsapi schemeapi schememodels**
+  - in the root folder of the project, type: **docker-compose up -d --build**
   - wait while docker compiles the services, downloads dependencies, and initializes containers
   - once ready, in your browser go to either http://yourhost.com:8088 or, on the machine running docker, http://localhost:8088
   - thats it!
