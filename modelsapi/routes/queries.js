@@ -12,7 +12,8 @@ router.get('/', (req, res, next) => {
     const maria = new Maria.MariaDB()
     maria.query(query)
         .then(queries => {
-            console.log(JSON.parse(JSON.stringify(queries)))
+            //console.log(JSON.parse(JSON.stringify(queries)))
+            console.log('...Got them.')
             maria.close()
                 .then(() => {
                     res.send(JSON.parse(JSON.stringify({'queries': queries})))
@@ -32,7 +33,7 @@ router.post('/delete', (req, res, next) => {
         .then(() => {
             maria.close()
                 .then(() => {
-                    console.log('successfuly deleted Saved Query')
+                    console.log('Successfuly deleted Saved Query')
                     res.send({'status': 'success'})
                 })
         })
@@ -59,7 +60,7 @@ router.post('/create', (req, res, next) => {
     const maria = new Maria.MariaDB()
     maria.insert(query, 'saved query')
         .then(() => {
-            console.log('Your Query was inserted Successfully!')
+            console.log('Your query was inserted successfully!')
             maria.close()
                 .then(() => {
                     res.send({'status': 'success', 'message': 'Query successfully added!'})
