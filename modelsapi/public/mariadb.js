@@ -1,8 +1,7 @@
 const mysql = require('mysql2')
 /*
  *  class for handling data operations on MariaDB backend database
- *  TEST
- *  let's make these async
+ *
 */
 class MariaDB {
 
