@@ -63,8 +63,8 @@ const PrestoClient = async (prestoinst, query) => {
                 columns: response.columns[0],
                 data: response.data
             }
-            console.log(jsonres.columns)
-            console.log(jsonres.data)
+            //console.log(jsonres.columns)
+            //console.log(jsonres.data)
             return jsonres
         }
 
