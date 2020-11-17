@@ -16,22 +16,30 @@ router.post('/login', function(req, res, next) {
                 .then(() => {
                     user = JSON.parse(JSON.stringify(user))
                     user = user[0]
-                    //console.log('User grabbed...: ', user)
-                    console.log('User grabbed...')
-                    //console.log('pass to compare...:', req.body.password)
-                    //console.log('encrypted pass...:', user.password)
-                    bcrypt.compare(req.body.password, user.password)
-                        .then(function(result) {
-                            if(result == true) {
-                                console.log('...password valid!')
-                                let token = jwt.sign({'id': user.id}, 'supersecret', {'expiresIn': 86400})
-                                res.send({'auth': true, 'token': token, 'user': user})
-                            }
-                            else {
-                                console.log('...password invalid.')
-                                res.send({'auth': false, 'token': null, 'user': null})
-                            }
-                        })
+                    if(user == undefined) {
+                        console.log('user not found in database')
+                        res.send({'auth': false, 'token': null, 'user': null})
+                    }
+                    else {
+                        console.log('User grabbed...: ', user)
+                        console.log('pass to compare...:', req.body.password)
+                        console.log('encrypted pass...:', user.password)
+                        bcrypt.compare(req.body.password, user.password)
+                            .then(function(result) {
+                                if(result == true) {
+                                    console.log('password valid')
+                                    let token = jwt.sign({'id': user.id}, 'supersecret', {'expiresIn': 86400})
+                                    res.send({'auth': true, 'token': token, 'user': user})
+                                }
+                                else {
+                                    console.log('password invalid')
+                                    res.send({'auth': false, 'token': null, 'user': null})
+                                }
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            })
+                    }
                 })
         })
         .catch(err => {
@@ -49,8 +57,7 @@ router.post('/register', function(req, res, next) {
     bcrypt.hash(req.body.password, 10)
         .then(function(hash) {
             User.password = hash
-            //console.log(User)
-            console.log('Creating new user...')
+            console.log(User)
 
             let insertUser = "insert into `users` (`first_name`, `last_name`, `email`, `password`) values ('" +
             User.firstname + "', '" +
@@ -58,17 +65,17 @@ router.post('/register', function(req, res, next) {
             User.email + "', '" +
             User.password + "');"
   
-            //console.log('Insert User Query: ', insertUser)
+            console.log('Insert User Query: ', insertUser)
             const maria = new Maria.MariaDB()
             maria.insert(insertUser, User.email)
                 .then(() => {
-                    console.log('...inserted new user successfully!')
+                    console.log('inserted new user successfully')
                     let findUser = "select * from `users` where email = '"
                         + User.email + "' limit 1"
                     console.log(findUser)
                     maria.query(findUser)
                         .then(user => {
-                            //console.log('User grabbed...:', user)
+                            console.log('User grabbed...:', user)
                             maria.close()
                                 .then(() => {
                                     user = JSON.parse(JSON.stringify(user))
