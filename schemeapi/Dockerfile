@@ -1,5 +1,5 @@
 # LTS version of node
-FROM node:lts
+FROM node:lts-alpine
 
 # app location
 WORKDIR /usr/src/schemeapi
