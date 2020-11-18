@@ -5,9 +5,9 @@ const saved = require('../models/queryinst')
 const Maria = require('../public/mariadb')
 const fetchdata = require('../public/fetchdata')
 
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
     console.log('Getting all saved queries! Wait...')
-    let query = "select * from `queries`"
+    let query = "select * from `queries` where `user_id` = " + req.body.userid
     
     const maria = new Maria.MariaDB()
     maria.query(query)
@@ -26,7 +26,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/delete', (req, res, next) => {
     console.log('Preparing to delete Saved Query')
-    let deletequery = "delete from `queries` where `id` = " + req.body.queryid
+    let deletequery = "delete from `queries` where `id` = " + req.body.queryid +
+        "and `user_id = " + req.body.userid
 
     const maria = new Maria.MariaDB()
     maria.delete(deletequery)
@@ -47,11 +48,13 @@ router.post('/create', (req, res, next) => {
     console.log('Preparing to save new query...')
     
     let Query = saved.Query
+    Query.userid = req.body.userid
+    Query.prestoid = req.body.p_id
     Query.name = req.body.alias
     Query.query = req.body.query
-    Query.prestoid = req.body.p_id
 
-    let query = "insert into `queries` (`presto_id`, `query_alias`, `query_sql`) values (" +
+    let query = "insert into `queries` (`user_id`, `presto_id`, `query_alias`, `query_sql`) values (" +
+        Query.userid + ", " +
         Query.prestoid + ", '" +
         Query.name + "', '" +
         Query.query + "');"

@@ -551,6 +551,7 @@ export default {
         order: '',
       },
       savedquery: {
+        userid: 0,
         p_id: 0,
         alias: '',
         query: '',
@@ -748,6 +749,7 @@ export default {
     },
     onSaveQuery(evt) {
       evt.preventDefault();
+      this.savedquery.userid = this.userid;
       this.savedquery.p_id = this.selectedPresto[0].id;
       this.savedquery.query = this.query;
       const config = {

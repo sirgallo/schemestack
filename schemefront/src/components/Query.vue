@@ -99,8 +99,17 @@ export default {
       this.queryfailure = '';
     },
     getQueries() {
+      const userid = {
+        userid: this.userid,
+      };
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      };
       const path = `http://${this.currentHostname}:8087/queries`;
-      axios.get(path)
+      axios.post(path, userid, config)
         .then((res) => {
           this.queries = res.data.queries;
         })
