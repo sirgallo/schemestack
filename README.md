@@ -23,7 +23,7 @@ This application is currently rolling out new features as it goes, it is current
 available soon, but if you would like to just test out the query builder go ahead!
 
 When accessing the application, you will be directed to the schema instances you currently have, in a list. You will not have any at first, and will be prompted as such! Hit create and fill out the schema instance creation form, using your presto credentials. These include:
-  - **host** where the cluster runs
+  - **host** where the cluster runs (requires http:// before connection string)
   - **port** to access the cluser
   - the data **catalog** where your schema lives
   - the **schema** you would like to use

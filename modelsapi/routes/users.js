@@ -21,9 +21,9 @@ router.post('/login', function(req, res, next) {
                         res.send({'auth': false, 'token': null, 'user': null})
                     }
                     else {
-                        console.log('User grabbed...: ', user)
-                        console.log('pass to compare...:', req.body.password)
-                        console.log('encrypted pass...:', user.password)
+                        //console.log('User grabbed...: ', user)
+                        //console.log('pass to compare...:', req.body.password)
+                        //console.log('encrypted pass...:', user.password)
                         bcrypt.compare(req.body.password, user.password)
                             .then(function(result) {
                                 if(result == true) {

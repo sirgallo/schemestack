@@ -55,10 +55,11 @@ router.post('/delete', (req, res, next) => {
         req.body.catalog + "' and `table_schema` = '" +
         req.body.schema + "'"
     let deletepresto = "delete from `prestocreds` where `id` = " + req.body.prestoid +
-        'and userid = ' + req.body.userid
+        ' and `userid` = ' + req.body.userid
     let deletecharts = "delete from `charts` where `presto_id` = " + req.body.prestoid
     let deletequeries = "delete from `queries` where `presto_id` = " + req.body.prestoid
     
+    console.log(deletepresto)
     const maria = new Maria.MariaDB()
     maria.delete(deletecharts)
         .then(() => {
