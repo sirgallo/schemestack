@@ -565,11 +565,17 @@ export default {
         query: '',
         type: '',
       },
+      user: [],
+      userid: '',
     };
   },
   mounted() {
     this.currentHostname = window.location.hostname;
-    this.reInit();
+    if (localStorage.user) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.userid = this.user.id;
+      this.reInit();
+    }
   },
   watch: {
     selectedTableJoins(val) {
@@ -584,8 +590,17 @@ export default {
       this.getPrestos();
     },
     getPrestos() {
+      const userid = {
+        userid: this.userid,
+      };
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      };
       const path = `http://${this.currentHostname}:8087/prestos`;
-      axios.get(path)
+      axios.post(path, userid, config)
       // axios.get('http://ec2-18-215-62-102.compute-1.amazonaws.com:8087/prestos')
       // axios.get('http://localhost:8087/prestos')
         .then((res) => {
@@ -622,6 +637,7 @@ export default {
       this.$bvModal.hide('presto-modal');
 
       const presto = {
+        userid: this.userid,
         alias: this.addPrestoForm.alias,
         hostname: this.addPrestoForm.host,
         port: this.addPrestoForm.port,
@@ -778,6 +794,7 @@ export default {
       evt.preventDefault();
 
       const prestoid = {
+        userid: this.userid,
         prestoid: this.selectedPresto[0].id,
         catalog: this.selectedPresto[0].catalog,
         schema: this.selectedPresto[0].schema,

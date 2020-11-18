@@ -75,11 +75,17 @@ export default {
       selectedQuery: [],
       queryfailure: '',
       restab: '',
+      user: [],
+      userid: '',
     };
   },
   mounted() {
     this.currentHostname = window.location.hostname;
-    this.reInit();
+    if (localStorage.user) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.userid = this.user.id;
+      this.reInit();
+    }
   },
   methods: {
     reInit() {
@@ -106,6 +112,7 @@ export default {
       evt.preventDefault();
       this.block = 'results';
       const inst = {
+        userid: this.userid,
         prestoid: this.selectedQuery[0].presto_id,
       };
       const configinst = {

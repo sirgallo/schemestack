@@ -6,6 +6,7 @@ grant all privileges on schememodels.* to 'schemeuser'@'localhost';
 
 create table if not exists schememodels.prestocreds (
     id bigint not null auto_increment,
+    `userid` bigint not null,
     alias varchar(512) not null default '',
     host varchar(256) not null default '',
     port bigint not null default '8080',
@@ -39,6 +40,7 @@ create table if not exists schememodels.users (
 
 create table if not exists schememodels.queries (
     id bigint not null auto_increment,
+    `user_id` bigint not null,
     presto_id bigint not null,
     query_alias varchar(256) not null,
     query_sql varchar(2048) not null,
@@ -47,6 +49,7 @@ create table if not exists schememodels.queries (
 
 create table if not exists schememodels.charts (
     id bigint not null auto_increment,
+    `user_id` bigint not null,
     presto_id bigint not null,
     chart_alias varchar(256) not null,
     chart_query varchar(256) not null,

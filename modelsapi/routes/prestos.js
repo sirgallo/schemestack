@@ -6,9 +6,9 @@ const presto = require('../models/prestoinst')
 const fetchschema = require('../public/fetchschema')
 const mapschema = require('../public/mapschema')
 
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
     console.log('Preparing to fetch prestos...')
-    const query = 'select * from `prestocreds`'
+    const query = 'select * from `prestocreds` where userid = ' + req.body.userid
 
     const maria = new Maria.MariaDB()
     maria.query(query)
@@ -29,7 +29,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/presto', (req, res, next) => {
     //console.log('Preparing to fetch Presto with Id: ' + req.body.prestoid)
-    const query = 'select * from `prestocreds` where id = ' + req.body.prestoid
+    const query = 'select * from `prestocreds` where id = ' + req.body.prestoid + 
+        ' and userid = ' + req.body.userid
 
     const maria = new Maria.MariaDB()
     maria.query(query)
@@ -53,7 +54,8 @@ router.post('/delete', (req, res, next) => {
     let deleteschema = "delete from `schemas` where `table_catalog` = '" +
         req.body.catalog + "' and `table_schema` = '" +
         req.body.schema + "'"
-    let deletepresto = "delete from `prestocreds` where `id` = " + req.body.prestoid
+    let deletepresto = "delete from `prestocreds` where `id` = " + req.body.prestoid +
+        'and userid = ' + req.body.userid
     let deletecharts = "delete from `charts` where `presto_id` = " + req.body.prestoid
     let deletequeries = "delete from `queries` where `presto_id` = " + req.body.prestoid
     
@@ -95,8 +97,9 @@ router.post('/create', (req, res, next) => {
     Presto.user = req.body.user
 
     //  we need to insert our instance into the database
-    let inspresto = 'insert into `prestocreds` (`alias`, `host`, `port`, `catalog`, `schema`, `user` ) values ("' +
-        Presto.alias + '", ' + "'" +
+    let inspresto = 'insert into `prestocreds` (`userid`, `alias`, `host`, `port`, `catalog`, `schema`, `user` ) values (' +
+        req.body.userid + ", '" +
+        Presto.alias + "', '" +
         Presto.host + "', " +
         Presto.port + ", '" +
         Presto.catalog + "', '" +
