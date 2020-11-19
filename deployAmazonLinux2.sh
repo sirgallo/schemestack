@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ $(which docker) && $(docker --version) && $(which docker-compose) && $(docker-compose --version)]] then
+if [ $(which docker) ] && [ $(docker --version) ] && [ $(which docker-compose) ] && [ $(docker-compose --version) ] then
   echo "Dependencies found, checking docker status..."
-  if [ "$(systemctl is-active docker)" = "active"] then
+  if [ "$(systemctl is-active docker)" = "active" ] then
     echo "Docker is already running!"
     sudo docker-compose up --build
   else
