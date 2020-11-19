@@ -4,11 +4,11 @@ if [[ $(which docker) && $(docker --version) && $(which docker-compose) && $(doc
   echo "Dependencies found, checking docker status..."
   if [ "$(systemctl is-active docker)" = "active" ]; then
     echo "Docker is already running!"
-    sudo docker-compose up --build
+    docker-compose up --build
   else
     echo "Starting Docker..."
     sudo service docker start
-    sudo docker-compose up --build
+    docker-compose up --build
   fi
 else
   echo "Install Dependencies and run Scheme"
@@ -20,5 +20,4 @@ else
   sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
 
-  sudo docker-compose up --build
 fi
