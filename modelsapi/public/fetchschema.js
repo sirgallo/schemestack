@@ -22,6 +22,7 @@ const fetchSchema = async (prestoinst, query) => {
     try {
         let response = await Request(request)
         console.log('Returned a Schema...phew')
+        //console.log(response)
         return response
     }
     catch (err) {

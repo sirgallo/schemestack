@@ -81,32 +81,35 @@ const PrestoClient = async (prestoinst, query) => {
  *  return data in fields columns and data
 */
 const Response = async (url, request, data) => {
-    let res = await Request(url, request)
+    try {
+        let res = await Request(url, request)
+        //  check for errors
+        if(res.hasOwnProperty('error')) {
+            console.log(res.error)
+            return { message: res.error }
+        }
 
-    //  check for errors
-    if(res.hasOwnProperty('error')) {
-        console.log(res.error)
-        return res.error
-    }
+        //  add to the data and columns fields for the
+        //  return data that will be handled on the front end
+        //  set up this way to handle returning duplicate columns
+        if(res.hasOwnProperty('columns') && res.hasOwnProperty('data')) {
+            console.log('...I see columns and data...working on it...')
+            data.columns.push(res.columns)
+            data.data.push(res.data)
+        }
+        else if(res.hasOwnProperty('data')) {
+            console.log('...I see just data...working on it...')
+            data.data.push(res.data)
+        }
 
-    //  add to the data and columns fields for the
-    //  return data that will be handled on the front end
-    //  set up this way to handle returning duplicate columns
-    if(res.hasOwnProperty('columns') && res.hasOwnProperty('data')) {
-        console.log('...I see columns and data...working on it...')
-        data.columns.push(res.columns)
-        data.data.push(res.data)
+        if(res.hasOwnProperty('nextUri')) {
+            console.log('...going to next URI at: ' + res.nextUri + "...")
+            return await Response(res.nextUri, cont, data)
+        }
+        return data
+    } catch(err) {
+        return err
     }
-    else if(res.hasOwnProperty('data')) {
-        console.log('...I see just data...working on it...')
-        data.data.push(res.data)
-    }
-
-    if(res.hasOwnProperty('nextUri')) {
-        console.log('...going to next URI at: ' + res.nextUri + "...")
-        return Response(res.nextUri, cont, data)
-    }
-    return data
 }
 
 /*
@@ -119,7 +122,7 @@ const Request = async (url, request) => {
         const response = await fetch(url, request)
         return await response.json()
     } catch (err) {
-        return err
+        return { error: err }
     }
 }
 

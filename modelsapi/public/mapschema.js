@@ -2,7 +2,7 @@ const Maria = require('./mariadb')
 
 const MapSchema = async (data) => {
     //  go through json response for current schema and build insert query
-    let insertschema = await BuildSchema(data)
+    let insertschema = await BuildSchema(data).catch(err => {return err})
         
     //console.log('This is the query to insert the new schema...')
     //console.log(insertschema)
@@ -16,7 +16,7 @@ const MapSchema = async (data) => {
                         resolve()
                 })
             .catch(err => {
-                return reject(err)
+                reject(err)
             })
         })
     })
@@ -24,7 +24,7 @@ const MapSchema = async (data) => {
 
 const BuildSchema = async (data) => {
      return await new Promise (resolve => {
-        let insertschema = "insert into `schemas` values "
+        let insertschema = "insert into `schemas` (`table_catalog`, `table_schema`, `table_name`, `column_name`, `ordinal_position`, `column_default`, `is_nullable`, `data_type`) values "
         for(let i = 0; i < data.length; i++) {
             for(let j = 0; j < data[i].length; j++) {
                 if (j == data[i].length - 1 && i == data.length - 1)
